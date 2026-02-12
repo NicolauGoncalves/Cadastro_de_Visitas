@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
+    :root { --branta-blue: #0066B3; --branta-red: #CE2029; }
+    .input-mobile { font-size: 16px !important; padding-top: 0.8rem; padding-bottom: 0.8rem; }
+    .slide-up { animation: slideUp 0.4s ease-out; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <header class="bg-white shadow-md border-b-4 border-[#0066B3] sticky top-0 z-50">
+      <div class="max-w-md mx-auto px-6 py-4 flex flex-col items-center">
+          <img src="logo.png" alt="Branta Intl School" class="h-20 w-auto mb-2 object-contain">
+          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Visitors Registry • 2026</p>
+      </div>
+  </header>
+
+  <main class="flex-grow p-4 max-w-md mx-auto w-full slide-up">
+    
+    <div id="introText" class="mb-6 mt-2 text-center">
+        <h2 class="text-xl font-black text-gray-800 uppercase tracking-tight">Seja bem-vindo(a)</h2>
+        <p class="text-sm text-gray-500 mt-1">Cadastro rápido para agilizar seu atendimento.</p>
+    </div>
+
+    <div id="successScreen" class="hidden flex flex-col items-center justify-center py-10 space-y-6 text-center">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center shadow-inner">
+            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h3 class="text-2xl font-black text-[#0066B3]">CADASTRO REALIZADO!</h3>
+        <p class="text-gray-500">As informações já foram enviadas para a nossa recepção.</p>
+        <button onclick="location.reload()" class="bg-gray-200 text-gray-600 px-6 py-4 rounded-2xl font-bold text-sm w-full uppercase tracking-widest">Novo Cadastro</button>
+    </div>
+
+    <form id="visitaForm" class="space-y-4 pb-10">
+        
+        <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 space-y-4">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Como nos conheceu?</label>
+            <div class="relative">
+                <select name="como_conheceu" class="w-full bg-gray-50 rounded-2xl px-4 py-4 font-bold text-gray-700 appearance-none border-2 border-transparent focus:border-[#0066B3] input-mobile transition-all" required onchange="this.value==='Indicação'?document.getElementById('fldInd').classList.remove('hidden'):document.getElementById('fldInd').classList.add('hidden')">
+                    <option value="" disabled selected>Toque para selecionar...</option>
+                    <option value="Indicação">Indicação</option>
+                    <option value="Instagram">Redes Sociais</option>
+                    <option value="Google">Google / Internet</option>
+                    <option value="Passou na frente">Passei na frente</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <div class="absolute right-4 top-5 pointer-events-none text-gray-400 text-xs">▼</div>
+            </div>
+            <div id="fldInd" class="hidden animate-pulse">
+                <input type="text" name="indicacao" class="w-full bg-gray-50 rounded-2xl px-4 py-4 input-mobile border-2 border-[#CE2029] focus:bg-white transition-all font-semibold" placeholder="Nome de quem indicou">
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 space-y-4 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-[#0066B3]"></div>
+            <h3 class="text-xs font-black text-[#0066B3] uppercase tracking-widest mb-2">Dados do Responsável</h3>
+            
+            <input type="text" name="responsavel" placeholder="Nome Completo" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#0066B3] transition-all font-bold text-gray-800" required>
+            
+            <div class="grid grid-cols-1 gap-3">
+                <input type="tel" name="telefone" inputmode="numeric" placeholder="Telefone/WhatsApp" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#0066B3] transition-all font-bold" required>
+                <input type="email" name="email" placeholder="E-mail" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#0066B3] transition-all" required>
+            </div>
+
+            <input type="text" name="profissao" placeholder="Profissão" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#0066B3]">
+            <input type="text" name="endereco" placeholder="Endereço Completo" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#0066B3]">
+        </div>
+
+        <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 space-y-4 relative overflow-hidden">
+             <div class="absolute top-0 left-0 w-2 h-full bg-[#CE2029]"></div>
+             <h3 class="text-xs font-black text-[#CE2029] uppercase tracking-widest mb-2">Dados do Aluno(s)</h3>
+             
+             <input type="text" name="alunos" placeholder="Nome do(s) Aluno(s)" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#CE2029] font-bold" required>
+             
+             <div class="grid grid-cols-2 gap-3">
+                <input type="text" name="nascimentos" placeholder="Nascimento" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#CE2029]">
+                <input type="text" name="escola_anterior" placeholder="Escola Anterior" class="w-full bg-gray-50 rounded-2xl px-4 input-mobile border-2 border-transparent focus:border-[#CE2029]">
+             </div>
+        </div>
+
+        <div class="pt-4">
+            <button type="submit" id="submitBtn" class="w-full bg-[#0066B3] text-white font-black text-lg py-5 rounded-2xl shadow-xl active:scale-95 transition-all uppercase tracking-widest border-b-4 border-[#004d86]">
+                Finalizar Cadastro
+            </button>
+        </div>
+
+    </form>
+  </main>
+
+  <footer class="mt-4 mb-8 text-center text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">
+    Branta Institute • Educational Tech
+  </footer>
+
+  <script>
+    document.getElementById('visitaForm').onsubmit = function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = "SALVANDO...";
+
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbymdbZv-rWNHWA5iMvmRBMpRFvLHhswEo3287hOGO4Nh-t3zb9xb0T38yR4lTACqTbJMg/exec";
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(this)
+      })
+      .then(() => {
+          document.getElementById('visitaForm').classList.add('hidden');
+          document.getElementById('introText').classList.add('hidden');
+          document.getElementById('successScreen').classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(err => {
+          alert("Erro na conexão. Tente novamente.");
+          btn.disabled = false;
+          btn.innerHTML = "Finalizar Cadastro";
+      });
+    };
+  </script>
+</body>
+</html>
